@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  pharmacyadmin:
+    container_name: PharmacyADMIN
+    restart: unless-stopped
+    image: nerodacles/pharmacyapi:latest
+    build:
+      context: ./
+      target: dev
+    networks:
+      pharmacyapp:
+        ipv4_address: 172.20.0.5
+    volumes:
+      - .:/src
+    command: yarn run serve
+    ports:
+      - "8088:3000"
+    environment:
+      NODE_ENV: development
+
+networks:
+  pharmacyapp:
+    external: true
