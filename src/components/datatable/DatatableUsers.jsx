@@ -2,21 +2,13 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-
-const baseURL = "https://pharmacy.jmcv.codes/users/All";
+import axiosInstance from "../../store/axios";
 
 const Datatable = () => {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
-    axios.get(baseURL, {
-      headers: {
-        'API-Key': "/>P<UvGV^18y(E~K};^TH7jHTa3Lz",
-      }
-    }).then((response) => {
-      setUsers(response.data);
-    });
+    axiosInstance.get("users/All").then((res) => { setUsers(res.data); });
   }, []);
 
   if (!users) return null;

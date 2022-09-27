@@ -2,14 +2,14 @@ import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-
-const baseURL = "https://pharmacy.jmcv.codes/api/";
+import axiosInstance from "../../store/axios";
 
 const Datatable = () => {
   const [products, setProducts] = useState(null);
 
-  useEffect(() => { axios.get(baseURL+"getAll").then((response) => { setProducts(response.data); }) }, []);
+  useEffect(() => {
+    axiosInstance.get("api/getAll").then((res) => { setProducts(res.data); });
+  }, []);
 
   if (!products) return null;
 

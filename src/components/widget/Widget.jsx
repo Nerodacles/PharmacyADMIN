@@ -4,9 +4,6 @@ import PersonOutlineOutlined from "@mui/icons-material/PersonOutlineOutlined";
 import AccountBalanceWalletOutLinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlined from "@mui/icons-material/MonetizationOnOutlined"; 
-import axios from "axios";
-
-let baseURL = "https://pharmacy.jmcv.codes/";
 
 const Widget = ({ type }) => {
     let data;

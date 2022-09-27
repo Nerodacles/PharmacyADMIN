@@ -9,11 +9,9 @@ let Login = () => {
 
   const handleLogin = useCallback(() => {
     axiosInstance.post('users/login', { username: user, password }).then((response) => {
-      if (response.data.error) {
-        setError(response.data.error)
-      } if (response.data.role !== 'admin') {
-        setError('No tienes permisos para acceder a esta página')
-      } else {
+      if (response.data.error) { setError(response.data.error) } 
+      if (response.data.role !== 'admin') { setError('No tienes permisos para acceder a esta página') } 
+      else {
         localStorage.setItem('token', response.data.token)
         localStorage.setItem('user', JSON.stringify(response.data))
         window.location.href = '/'
