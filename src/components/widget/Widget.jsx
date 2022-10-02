@@ -1,41 +1,40 @@
 import "./widget.scss";
 import KeyboardArrowUp from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlineOutlined from "@mui/icons-material/PersonOutlineOutlined";
-import AccountBalanceWalletOutLinedIcon from "@mui/icons-material/AccountBalanceOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlined from "@mui/icons-material/MonetizationOnOutlined"; 
+import MonetizationOnOutlined from "@mui/icons-material/MonetizationOnOutlined";
 
-const Widget = ({ type }) => {
-    let data;
+const Widget = ({ type, amount, diff }) => {
+    let data
 
-    // Temporary
-    const amount = 3;
-    const diff = 20;
-
-
-switch (type) {
-    case "user":
-        data = {
-            title: "USERS",
-            isMoney: false,
-            link: "See all users",
-            amount: 300,
-            icon: (
-                <PersonOutlineOutlined 
-                className="icon" 
-                style={{
-                    color: "crimson",
-                    backgroundColor: " rgba(218,165,32,0.2)",
-                }}
-                />
-            ),
-        };
-        break;
+    switch (type) {
+        case "user":
+            data = {
+                title: "Usuarios",
+                isMoney: false,
+                link: "Ver todos los usuarios",
+                amount: amount,
+                diff: diff,
+                page: "/users",
+                icon: (
+                    <PersonOutlineOutlined 
+                    className="icon" 
+                    style={{
+                        color: "crimson",
+                        backgroundColor: " rgba(218,165,32,0.2)",
+                    }}
+                    />
+                ),
+            };
+            break;
         case "order":
             data = {
-                title: "ORDERS",
+                title: "Ordenes",
                 isMoney: false,
-                link: "View all orders",
+                amount: amount,
+                diff: diff,
+                page: "/orders",
+                link: "Ver todas las ordenes",
                 icon: (
                     <ShoppingCartOutlinedIcon className="icon" 
                     style={{
@@ -48,9 +47,11 @@ switch (type) {
             break;
             case "earning":
                 data = {
-                    title: "EARNINGS",
+                    title: "Ventas",
                     isMoney: true,
-                    link: "View net earnings",
+                    amount: amount,
+                    diff: diff,
+                    link: "Ver todas las ventas",
                     icon: (
                         <MonetizationOnOutlined className="icon" 
                         style={{
@@ -61,36 +62,20 @@ switch (type) {
                     ),
                 };
                 break;
-                case "balance":
-                    data = {
-                        title: "BALANCE",
-                        isMoney: true,
-                        link: "See details",
-                        icon: (
-                            <AccountBalanceWalletOutLinedIcon className="icon" 
-                            style={{
-                                color: "purple",
-                                backgroundColor: " rgba(128,0,128,0.2)",
-                            }}
-                                />
-                        ),
-                    };
-                    break;
-                        default:
-                    break;
-}
-
+        default:
+            break;
+    }
     return (
         <div className="widget">
             <div className="left">
                 <span className="title">{data.title}</span>
-                <span className="counter">{data.isMoney && "RD$"} {amount}</span>
+                <span className="counter">{data.isMoney && "RD$"} {data.isMoney && data.amount.toLocaleString("en-US")} {!data.isMoney && data.amount}</span>
                 <span className="link">{data.link}</span>
             </div>
             <div className="right">
                 <div className="percentage positive">
                     <KeyboardArrowUp />
-                        {diff} %
+                        {data.diff} %
                 </div>
             {data.icon}
             </div>

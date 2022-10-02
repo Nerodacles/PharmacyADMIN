@@ -9,9 +9,6 @@ import Paper from '@mui/material/Paper';
 import axiosInstance from "../../store/axios";
 import { useEffect, useState } from "react";
 
-// Made by Moses Mwila 
-// for Zykar Solutions Limited
-
 const List = () => {
   const [orders, setOrders] = useState(null);
 
@@ -42,8 +39,8 @@ const List = () => {
             <TableCell className="tableCell" align="left">
                 {row.drugs.map((drug) => (
                   <div className="cellWrapper" key={drug.id} >
-                    <img src={drug.cover} alt="" className="image" />
-                    {drug.name}
+                    <img crossOrigin="anonymous" src={'http://'+drug.cover} alt="" className="image" />
+                    {drug.name} x {drug.quantity}
                   </div>
                 ))}
             </TableCell>

@@ -1,9 +1,8 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Switch from "react-switch";
-import { useCallback } from "react";
 import axiosInstance from "../../store/axios";
 
 const Datatable = () => {
@@ -21,13 +20,10 @@ const Datatable = () => {
 
   if (!orders) return null;
 
-  const handleDelete = (id) => {
-    setOrders(orders.filter((item) => item.id !== id));
-  };
-
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
     { field: "totalPrice", headerName: "Precio Total", width: 100 },
+    { field: "user", headerName: "Usuario", width: 70 },
     { field: "createdTime", headerName: "Fecha", width: 100, renderCell: (params) => {
         return (
           <div>{params.value.split("T")[0]}</div>
@@ -40,9 +36,9 @@ const Datatable = () => {
     },
     { field: "drugs", headerName: "Medicamentos", width: 200, renderCell: (params) => {
       return ( 
-        <div> {params.value.map((drug) => ( 
-          <div key={drug.id}> <p>{drug.name}</p> </div> 
-          ))} 
+        <div className="drugs"> {params.value.map((drug) => ( 
+          <div key={drug.id}> <p>{drug.name}</p></div> 
+          ))}
         </div>
       )},
     },
@@ -63,19 +59,13 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 100,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },
@@ -84,10 +74,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Drug
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
+        Ordenes
       </div>
       <DataGrid
         className="datagrid"
@@ -96,7 +83,6 @@ const Datatable = () => {
         key={orders.id}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
       />
     </div>
   );

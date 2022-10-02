@@ -1,11 +1,18 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../../store/axios";
+import Switch from "react-switch";
 
 const Datatable = () => {
   const [products, setProducts] = useState(null);
+
+  const handleSwitch = useCallback( (id, chequed) => {
+    axiosInstance.patch("status/" + id, { status: !chequed }).then((response) => {
+      setProducts(products.map((order) => order.id === id ? { ...order, status: !chequed } : order));
+    });
+  }, [products]);
 
   useEffect(() => {
     axiosInstance.get("api/getAll").then((res) => { setProducts(res.data); });
@@ -22,14 +29,26 @@ const Datatable = () => {
     {field: "name", headerName: "Fármaco", width: 200},
     {field: "price", headerName: "Precio", width: 90},
     {field: "tags", headerName: "Tags", width: 200},
-    {field: "cover", headerName: "Cover", width: 200, renderCell: (params) => {
+    {field: "cover", headerName: "Cover", width: 100, renderCell: (params) => {
       return (
-        <img src={'https://'+params.value} alt="" style={{width: "100%", height: "100%"}}/>
+        <div className="cellWithImg">
+          <img className="cellImg" crossOrigin="anonymous" src={'http://'+params.value} alt=""/>
+        </div>
       )
     }},
   ];
 
   const actionColumn = [
+    { field: "status", headerName: "Estado", width: 80, renderCell: (params) => {
+      return (
+        <div>
+          <Switch
+            onChange={() => handleSwitch(params.row.id, params.row.status)}
+            checked={params.value}
+          />
+        </div>
+      )
+    }},
     {
       field: "action",
       headerName: "Action",
@@ -47,10 +66,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New Drug
-        <Link to="/users/new" className="link">
-          Add New
-        </Link>
+        Fármacos
       </div>
       <DataGrid
         className="datagrid"
