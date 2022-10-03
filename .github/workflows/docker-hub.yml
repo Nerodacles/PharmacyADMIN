@@ -1,0 +1,62 @@
+name: Publish Docker image
+on: workflow_dispatch
+
+jobs:
+  releaseJob:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch to calculate changelog
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Calculate version
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get updated commit SHA
+        run: |
+          echo "##[set-output name=commit_id;]$(git rev-parse HEAD)"
+        id: updated_sha
+
+      - uses: fregante/release-with-changelog@v3
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-template: '- {date}: {title} ← {hash}'
+          template: |
+              ### Changelog
+              {commits}
+              
+              Compare: {range}
+
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: releaseJob
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        with:
+          images: nerodacles/pharmacyadmin
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
