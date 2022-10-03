@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pharmacy Administration Page <br> :open_file_folder: :sparkler: :electric_plug:
+# Pharmacy Administration Page <br> :sparkles: :grey_exclamation: :hospital:
 
 Built with [React](https://facebook.github.io/react/), [Material-UI](https://material-ui.com), [React Router](https://reacttraining.com/react-router/).
 **No jQuery and Bootstrap!**
