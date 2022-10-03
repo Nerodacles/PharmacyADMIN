@@ -39,7 +39,7 @@ const List = () => {
             <TableCell className="tableCell" align="left">
                 {row.drugs.map((drug) => (
                   <div className="cellWrapper" key={drug.id} >
-                    <img crossOrigin="anonymous" src={'http://'+drug.cover} alt="" className="image" />
+                    <img crossOrigin="anonymous" src={'https://'+drug.cover} alt="" className="image" />
                     {drug.name} x {drug.quantity}
                   </div>
                 ))}

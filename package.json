@@ -2,6 +2,8 @@
   "name": "pharmacyadmin",
   "version": "0.1.0",
   "private": false,
+  "author": "Juanma Canahuate",
+  "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -20,6 +22,7 @@
     "react-switch": "^7.0.0",
     "recharts": "^2.1.14",
     "sass": "^1.53.0",
+    "serve": "^14.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -32,7 +32,7 @@ const Datatable = () => {
     {field: "cover", headerName: "Cover", width: 100, renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" crossOrigin="anonymous" src={'http://'+params.value} alt=""/>
+          <img className="cellImg" crossOrigin="anonymous" src={'https://'+params.value} alt=""/>
         </div>
       )
     }},
