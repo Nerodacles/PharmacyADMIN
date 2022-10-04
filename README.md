@@ -24,9 +24,6 @@ Built with [React](https://facebook.github.io/react/), [Material-UI](https://mat
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Nerodacles_PharmacyADMIN&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Nerodacles_PharmacyADMIN)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Nerodacles_PharmacyADMIN&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=Nerodacles_PharmacyADMIN)
 
-[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/nerodacles/PharmacyADMIN/express?logo=express&logoColor=white)](https://www.npmjs.com/package/express "Go to Express on NPM")
-[![Package - Typescript](https://img.shields.io/github/package-json/dependency-version/nerodacles/PharmacyADMIN/mongoose?logo=mongoose&logoColor=white)](https://www.npmjs.com/package/mongoose "Go to Mongoose on NPM")
-
 </div>
 
 </div>
