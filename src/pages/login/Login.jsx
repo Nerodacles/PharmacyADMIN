@@ -1,4 +1,5 @@
-/* eslint-disable no-unused-vars */
+
+import "./login.scss"
 import axiosInstance from '../../store/axios'
 import { useEffect, useState, useCallback } from 'react'
 
@@ -27,24 +28,27 @@ let Login = () => {
   , [])
 
   return (
-    <div className='login'>
-      <div className='loginWrapper'>
-        <div className='loginLeft'>
-          <h3 className='loginLogo'>Admin</h3>
-          <span className='loginDesc'>
-            Administra tu farmacia
-          </span>
-        </div>
-        <div className='loginRight'>
-          <div className='loginBox'>
-            <input placeholder='Usuario' className='loginInput' type='text' onChange={(e) => setUser(e.target.value)} />
-            <input placeholder='Contraseña' className='loginInput' type='password' onChange={(e) => setPassword(e.target.value)} />
-            <button className='loginButton' onClick={handleLogin}>Iniciar Sesión</button>
-            <span className='loginForgot'>¿Olvidaste tu contraseña?</span>
+    <div className="login-body">
+      <div className="screen-1">
+        <img className="logo" src="logo.png" alt="Logo" height={300} width={300} />
+        <div className="email">
+          <label htmlFor="email">Correo</label>
+          <div className="sec-2">
+            <ion-icon name="mail-outline"></ion-icon>
+            <input type="email" name="email" placeholder="Username@gmail.com" onChange={(e) => setUser(e.target.value)}/>
           </div>
         </div>
+        <div className="password">
+          <label htmlFor="password">Contraseña</label>
+          <div className="sec-2">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <input className="pas" type="password" name="password" placeholder="············" onChange={(e) => setPassword(e.target.value)}/>
+            <ion-icon className="show-hide" name="eye-outline"></ion-icon>
+          </div>
+        </div>
+        <button className="login" onClick={handleLogin}>Login</button>
         <div>
-          {error && <p>{error}</p>}
+          {error && <div className="error">{error}</div>}
         </div>
       </div>
     </div>
