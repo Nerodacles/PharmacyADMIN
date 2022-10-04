@@ -1,8 +1,7 @@
 import "./featured.scss"
 import { CircularProgressbar} from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { KeyboardArrowUpOutlined, MoreVertOutlined } from "@mui/icons-material";
-import { KeyboardArrowDown } from "@mui/icons-material";
+import { KeyboardArrowUpOutlined, MoreVertOutlined, KeyboardArrowDown } from "@mui/icons-material";
 
 
 const Featured = () => {

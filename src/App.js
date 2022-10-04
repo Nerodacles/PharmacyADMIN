@@ -1,16 +1,14 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 
-// Lists
-// eslint-disable-next-line
 import UserList from "./pages/lists/users";
 import ProductsList from "./pages/lists/products";
 import OrdersList from "./pages/lists/orders";
 
 // Single
-import SingleUser from "./pages/single/Single";
-import SingleProduct from "./pages/single/Single";
-import SingleOrder from "./pages/single/Single";
+import SingleUser from "./pages/single/SingleUser";
+import SingleProduct from "./pages/single/SingleProduct";
+import SingleOrder from "./pages/single/SingleOrder";
 
 // Pages
 import New from "./pages/new/New";

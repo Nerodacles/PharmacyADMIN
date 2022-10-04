@@ -1,6 +1,5 @@
 $p: hsl(213deg 85% 97%);
 $s: hsl(233deg 36% 38%);
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=Poppins');
 @mixin screen {
 	background: $p;
 	padding: 2em;
@@ -8,10 +7,10 @@ $s: hsl(233deg 36% 38%);
 	flex-direction: column;
 	border-radius: 30px;
 	box-shadow: 0 0 2em hsl(231deg 62% 94%);
-	font-family: 'Poppins';
+	font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
 }
 .login-body {
-	font-family: 'Poppins';
+	font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
 	user-select: none;
 	overflow-y: hidden;
 	display: flex;
