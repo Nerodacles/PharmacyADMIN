@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../../store/axios";
 import Switch from "react-switch";
@@ -20,9 +20,9 @@ const Datatable = () => {
 
   if (!products) return null;
 
-  const handleDelete = (id) => {
-    setProducts(products.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setProducts(products.filter((item) => item.id !== id));
+  // };
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
