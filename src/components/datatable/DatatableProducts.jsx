@@ -51,13 +51,13 @@ const Datatable = () => {
     }},
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Acciónes",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> View </div></Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Delete </div>
+            <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
+            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Eliminar </div>
           </div>
         );
       },

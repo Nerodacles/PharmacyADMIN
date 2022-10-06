@@ -1,46 +1,82 @@
 import "./featured.scss"
-import { CircularProgressbar} from "react-circular-progressbar";
+import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { KeyboardArrowUpOutlined, MoreVertOutlined, KeyboardArrowDown } from "@mui/icons-material";
+import { KeyboardArrowUpOutlined, KeyboardArrowDown } from "@mui/icons-material";
 
+const Featured = ({data}) => {
+  let today = new Date().toLocaleDateString();
+  let target = 2000;
+  
+  let earningsToday = data.filter((order) => {
+    return new Date(order.createdTime).toLocaleDateString() === today;
+  }).reduce((acc, curr) => {
+    return acc + curr.totalPrice;
+  }, 0);
 
-const Featured = () => {
+  let earningsLastWeek = data.filter((order) => {
+    return new Date(order.createdTime).getMonth() === new Date().getMonth() && new Date(order.createdTime).getDate() > new Date().getDate() - 7;
+  }).reduce((acc, curr) => {
+    return acc + curr.totalPrice;
+  }, 0);
+
+  let earningsLastMonth = data.filter((order) => {
+    return new Date(order.createdTime).getMonth() === new Date().getMonth();
+  }).reduce((acc, curr) => {
+    return acc + curr.totalPrice;
+  }, 0);
+
+  let percentage = Math.round((earningsToday / target) * 100);
+
+  const ResultItem = (data) => {
+    if (data.data > target) { 
+      return (
+        <div className="itemResult positive">
+          <KeyboardArrowUpOutlined fontSize="small"/>
+          <div className="resultAmount">RD$ {Number(data.data).toLocaleString("en-US")}</div>
+        </div>
+      )  
+    }
+    if (data.data === target) { 
+      return (
+        <div className="itemResult neutral">
+          <div className="resultAmount">RD$ {Number(data.data).toLocaleString("en-US")}</div>
+        </div>
+      )  
+    }
+    return (
+      <div className="itemResult negative">
+        <KeyboardArrowDown fontSize="small" />
+        <div className="resultAmount">RD$ {Number(data.data).toLocaleString("en-US")}</div>
+      </div>
+    )
+  };
+
   return (
     <div className='featured'>
       <div className="top">
-        <h1 className="title"> Total Revenue</h1>
-        <MoreVertOutlined fontSize="small" />
+        <h1 className="title">Ventas Totales</h1>
       </div>
       <div className="bottom">
         <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth="5"/>
-         </div>
-         <p className="title">Total Sales made today</p>
-         <p className="amount">ZMK 450</p>
-         <p className="desc">Previous transcations processing. Last Payments may not be included.</p>
-         <div className="summary">
+          <CircularProgressbar value={percentage} text={`${percentage}%`} strokeWidth="5"/>
+        </div>
+        <p className="title">Total de ventas hechas hoy</p>
+        <p className="amount">RD$ {Number(earningsToday).toLocaleString("en-US")}</p>
+        <p className="desc">Las transacciones previas aún se siguen procesando. Es posible que no se incluyan los últimos pagos.</p>
+        <div className="summary">
           <div className="item">
-            <div className="itemTitle">Target</div>
-            <div className="itemResult negative">
-              <KeyboardArrowDown fontSize="small" />
-              <div className="resultAmount">ZMK12.7</div>
-            </div>
+            <div className="itemTitle">Objetivo</div>
+            <ResultItem data={target}/>
           </div>
           <div className="item">
-            <div className="itemTitle">Last Week</div>
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlined fontSize="small" />
-              <div className="resultAmount">ZMK10.7k</div>
-            </div>
+            <div className="itemTitle">Semana Pasada</div>
+            <ResultItem data={earningsLastWeek}/>
           </div>  
-             <div className="item">
-            <div className="itemTitle">Last Month</div>
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlined fontSize="small" />
-              <div className="resultAmount">ZMK52.2k</div>
-            </div>
+            <div className="item">
+            <div className="itemTitle">Mes Pasado</div>
+            <ResultItem data={earningsLastMonth}/>
           </div>
-         </div>
+        </div>
       </div>
     </div>
   )

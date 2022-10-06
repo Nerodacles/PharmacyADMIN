@@ -58,13 +58,13 @@ const Datatable = () => {
       }},
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Acciónes",
       width: 100,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">Ver</div>
             </Link>
           </div>
         );
@@ -74,7 +74,7 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Ordenes
+        Órdenes
       </div>
       <DataGrid
         className="datagrid"
