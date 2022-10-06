@@ -49,19 +49,19 @@ const Datatable = () => {
         </div>
       )
     }},
-    {
-      field: "action",
-      headerName: "Acciónes",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Eliminar </div>
-          </div>
-        );
-      },
-    },
+    // {
+    //   field: "action",
+    //   headerName: "Acciónes",
+    //   width: 200,
+    //   renderCell: (params) => {
+    //     return (
+    //       <div className="cellAction">
+    //         <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
+    //         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Eliminar </div>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   return (
     <div className="datatable">
