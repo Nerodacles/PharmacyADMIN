@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../../store/axios";
 import Switch from "react-switch";
@@ -20,9 +20,9 @@ const Datatable = () => {
 
   if (!products) return null;
 
-  const handleDelete = (id) => {
-    setProducts(products.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setProducts(products.filter((item) => item.id !== id));
+  // };
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -49,19 +49,19 @@ const Datatable = () => {
         </div>
       )
     }},
-    {
-      field: "action",
-      headerName: "Action",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> View </div></Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Delete </div>
-          </div>
-        );
-      },
-    },
+    // {
+    //   field: "action",
+    //   headerName: "Acciónes",
+    //   width: 200,
+    //   renderCell: (params) => {
+    //     return (
+    //       <div className="cellAction">
+    //         <Link to="/users/test" style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
+    //         <div className="deleteButton" onClick={() => handleDelete(params.row.id)}> Eliminar </div>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   return (
     <div className="datatable">

@@ -1,6 +1,6 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import Switch from "react-switch";
 import axiosInstance from "../../store/axios";
@@ -56,25 +56,25 @@ const Datatable = () => {
           </div>
         )
       }},
-    {
-      field: "action",
-      headerName: "Action",
-      width: 100,
-      renderCell: (params) => {
-        return (
-          <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
-          </div>
-        );
-      },
-    },
+    // {
+    //   field: "action",
+    //   headerName: "Acciónes",
+    //   width: 100,
+    //   renderCell: (params) => {
+    //     return (
+    //       <div className="cellAction">
+    //         <Link to="/users/test" style={{ textDecoration: "none" }}>
+    //           <div className="viewButton">Ver</div>
+    //         </Link>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Ordenes
+        Órdenes
       </div>
       <DataGrid
         className="datagrid"

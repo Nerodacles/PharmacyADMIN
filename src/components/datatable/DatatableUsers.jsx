@@ -20,10 +20,6 @@ const Datatable = () => {
 
   if (!users) return null;
 
-  const handleDelete = (id) => {
-    setUsers(users.filter((item) => item.id !== id));
-  };
-
   const columns = [
     {field: "id", headerName: "ID", width: 150},
     {field: "username", headerName: "Nombre", width: 200},
@@ -45,20 +41,14 @@ const Datatable = () => {
     }},
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Acciónes",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/users/${params.row.id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Ver</div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </div>
           </div>
         );
       },

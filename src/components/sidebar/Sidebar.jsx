@@ -23,13 +23,13 @@ const Sidebar = () => {
     <div className="sidebar"> 
     <div className="top">
       <Link to="/" style={{textDecoration: "none"}}>
-        <span className="logo">Pharmacy Admin Panel</span>
+        <span className="logo">Pharmacy - Panel Administrador</span>
       </Link>
     </div>
     <hr />
     <div className="center">
         <ul>
-          <p className="title">Main</p>
+          <p className="title">Principal</p>
             <Link to="/" style={{textDecoration: "none"}}>
               <li>
               <DashboardIcon className="icon" />
@@ -37,22 +37,22 @@ const Sidebar = () => {
               </li>
             </Link>
             <Link to="/users" style={{textDecoration: "none"}}>
-              <p className="title">LISTS</p>
+              <p className="title">Listas</p>
               <li>
                 <PersonOutlineOutlinedIcon className="icon" />
-              <span>Users</span>
+              <span>Usuarios</span>
               </li>
             </Link>
             <Link to="/products" style={{textDecoration: "none"}}>
               <li>
                 <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>Productos</span>
               </li>
             </Link>
             <Link to="/orders" style={{textDecoration: "none"}}>
               <li>
                 <CreditCardIcon className="icon" />
-              <span>Orders</span>
+              <span>Órdenes</span>
               </li>
             </Link>
             <li>
@@ -61,7 +61,7 @@ const Sidebar = () => {
             </li>
             <li>
               <InputOutlinedIcon className="icon" />
-            <span onClick={() => logout()}>Logout</span>
+            <span onClick={() => logout()}>Cerrar Sesion</span>
             </li>
         </ul>
 
