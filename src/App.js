@@ -12,6 +12,7 @@ import SingleOrder from "./pages/single/SingleOrder";
 
 // Pages
 import New from "./pages/new/New";
+import Modify from "./pages/modify/Modify";
 
 // Sources
 import { productInputs, userInputs, orderInputs } from "./formSource";
@@ -44,17 +45,18 @@ function App() {
             <Route path="users">
               <Route index element={<ProtectedRoute><UserList/></ProtectedRoute>} />
               <Route path=":userId" element={<SingleUser/>}/>
-              <Route path="new" element={<New inputs={userInputs} title="Add New User"/>}/>
+              <Route path="new" element={<New inputs={userInputs} title="Añadir nuevo usuario"/>}/>
             </Route>
             <Route path="products">
               <Route index element={<ProtectedRoute><ProductsList/></ProtectedRoute>}/>
               <Route path=":productId" element={<SingleProduct/>}/>
-              <Route path="new" element={<New inputs={productInputs} title="Add New Product"/>}/>
+              <Route path="new" element={<New inputs={productInputs} title="Añadir nuevo fármaco"/>}/>
+              <Route path="modify/:productId" element={<Modify inputs={productInputs} title="Editar fármaco"/>}/>
             </Route>
             <Route path="orders">
               <Route index element={<ProtectedRoute><OrdersList/></ProtectedRoute>}/>
               <Route path=":orderId" element={<SingleOrder/>}/>
-              <Route path="new" element={<New inputs={orderInputs} title="Add New Order"/>}/>
+              <Route path="new" element={<New inputs={orderInputs} title="Añadir nueva orden"/>}/>
             </Route>
           </Route>
         </Routes>

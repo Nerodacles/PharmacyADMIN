@@ -9,7 +9,7 @@ const Datatable = () => {
   const [orders, setOrders] = useState(null);
 
   const handleSwitch = useCallback( (id, chequed) => {
-      axiosInstance.patch("status/" + id, { status: !chequed }).then((response) => {
+      axiosInstance.patch(`/orders/status/${id}`, { status: !chequed }).then((response) => {
         setOrders(orders.map((order) => order.id === id ? { ...order, status: !chequed } : order));
       });
   },[orders] );

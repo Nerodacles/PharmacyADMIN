@@ -9,11 +9,11 @@ const Datatable = () => {
   const [users, setUsers] = useState(null);
 
   const handleSwitch = useCallback( (id, chequed) => {
-      axiosInstance.patch("status/" + id, { status: !chequed }).then((response) => {
+      axiosInstance.patch(`/users/${id}`, { status: !chequed }).then((response) => {
         setUsers(users.map((order) => order.id === id ? { ...order, status: !chequed } : order));
       });
-  },[users] );
-
+    },[users] );
+    
   useEffect(() => {
     axiosInstance.get("users/All").then((res) => { setUsers(res.data); });
   }, []);
@@ -62,10 +62,10 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={users}
+        key={users.id}
         columns={columns.concat(actionColumn)}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
       />
     </div>
   );

@@ -6,26 +6,22 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import InputOutlinedIcon from '@mui/icons-material/InputOutlined';
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { DarkModeContext } from "../../context/darkModeContext";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext)
-
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    // refresh page
+
     window.location.reload();
   }
 
   return (
     <div className="sidebar"> 
-    <div className="top">
-      <Link to="/" style={{textDecoration: "none"}}>
-        <span className="logo">Pharmacy - Panel Administrador</span>
-      </Link>
-    </div>
+      <div className="top">
+        <Link to="/" style={{textDecoration: "none"}}>
+          <span className="logo">Pharmacy - Panel Administrador</span>
+        </Link>
+      </div>
     <hr />
     <div className="center">
         <ul>
@@ -65,14 +61,6 @@ const Sidebar = () => {
             </li>
         </ul>
 
-    </div>
-    <div className="bottom">
-        <div className="colorOption" 
-          onClick={() => dispatch({ type : "LIGHT"})}>
-        </div>
-        <div className="colorOption"
-          onClick={() => dispatch({ type : "DARK"})}>
-        </div>
     </div>
     </div>
   )
