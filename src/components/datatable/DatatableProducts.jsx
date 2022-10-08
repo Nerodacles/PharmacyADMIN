@@ -61,7 +61,7 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/drug/${params.id}`} style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
+            <Link to={`${params.id}`} style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
             <button className="editButton" onClick={() => handleModify(params.id)}> Modificar </button>
           </div>
         );

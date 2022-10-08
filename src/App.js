@@ -15,7 +15,7 @@ import New from "./pages/new/New";
 import Modify from "./pages/modify/Modify";
 
 // Sources
-import { productInputs, userInputs, orderInputs } from "./formSource";
+import { productInputs } from "./formSource";
 
 import "./style/dark.scss";
 import { useContext } from "react";
@@ -44,19 +44,17 @@ function App() {
             <Route path="login" element={<Login/>}/>
             <Route path="users">
               <Route index element={<ProtectedRoute><UserList/></ProtectedRoute>} />
-              <Route path=":userId" element={<SingleUser/>}/>
-              <Route path="new" element={<New inputs={userInputs} title="Añadir nuevo usuario"/>}/>
+              <Route path=":userId" element={<ProtectedRoute><SingleUser/></ProtectedRoute>}/>
             </Route>
             <Route path="products">
               <Route index element={<ProtectedRoute><ProductsList/></ProtectedRoute>}/>
-              <Route path=":productId" element={<SingleProduct/>}/>
-              <Route path="new" element={<New inputs={productInputs} title="Añadir nuevo fármaco"/>}/>
-              <Route path="modify/:productId" element={<Modify inputs={productInputs} title="Editar fármaco"/>}/>
+              <Route path=":productId" element={<ProtectedRoute><SingleProduct/></ProtectedRoute>}/>
+              <Route path="new" element={<ProtectedRoute><New inputs={productInputs} title="Añadir nuevo fármaco"/></ProtectedRoute>}/>
+              <Route path="modify/:productId" element={<ProtectedRoute><Modify inputs={productInputs} title="Editar fármaco"/></ProtectedRoute>}/>
             </Route>
             <Route path="orders">
               <Route index element={<ProtectedRoute><OrdersList/></ProtectedRoute>}/>
-              <Route path=":orderId" element={<SingleOrder/>}/>
-              <Route path="new" element={<New inputs={orderInputs} title="Añadir nueva orden"/>}/>
+              <Route path=":orderId" element={<ProtectedRoute><SingleOrder/></ProtectedRoute>}/>
             </Route>
           </Route>
         </Routes>

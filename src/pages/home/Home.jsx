@@ -57,7 +57,7 @@ const Home = () => {
       </div>
       <div className="listContainer">
         <div className="listTitle">Ultimas Transacciones</div>
-        <Table/>
+        <Table orders={orders}/>
       </div>
       </div>
     </div>

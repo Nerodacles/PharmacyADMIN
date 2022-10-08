@@ -1,8 +1,8 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/chartUsers" ;
-import List from "../../components/table/tableUsers";
+import Chart from "../../components/chart/Chart" ;
+import List from "../../components/table/Table";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../store/axios";
 
@@ -19,6 +19,7 @@ const Single = () => {
     };
     getUser();
   }, [id]);
+
   return (
     <div className="single">
       <Sidebar/>

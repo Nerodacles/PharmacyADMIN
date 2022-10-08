@@ -76,6 +76,7 @@ const Datatable = () => {
       <div className="datatableTitle">
         Órdenes
       </div>
+
       <DataGrid
         className="datagrid"
         rows={orders}
@@ -83,6 +84,7 @@ const Datatable = () => {
         key={orders.id}
         pageSize={10}
         rowsPerPageOptions={[10]}
+        disableColumnFilter={false}
       />
     </div>
   );
