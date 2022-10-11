@@ -9,10 +9,9 @@ import Creatable from 'react-select/creatable';
 const New = ({inputs, title}) => {
   const [cover, setFile] = useState("");
   const [product, setProduct] = useState();
-  let [newProduct, setNewProduct] = useState();
+  let [newProduct, setNewProduct] = useState({tags: []});
   const [tags] = useState([]);
   const [error, setError] = useState(null)
-
   const id = window.location.pathname.split("/")[3];
 
   inputs = inputs.map((input) => {
@@ -56,7 +55,7 @@ const New = ({inputs, title}) => {
   useEffect(() => {
     axiosInstance.get(`api/getOne/${id}`).then((res) => { setProduct(res.data.data); });
     axiosInstance.get(`tags`).then((res) => {
-      for (let tag of res.data) { tags.push({value: tag.id, label: tag.name}) }
+      for (let tag of res.data) { tags.push({value: tag.name, label: tag.name}) }
       if (tags.length > res.data.length) { tags.splice(0, res.data.length); }
     });
   }, [id, tags]);
@@ -80,7 +79,7 @@ const New = ({inputs, title}) => {
                 <label htmlFor="file">Image : <DriveFolderUploadOutlined className="icon"/> </label>
                 <input type="file" name="cover" id="file" onChange={(input) => handleChange(input)} style={{ display: "none"}} />
               </div>
-              <div className="formInput"><Creatable options={tags} placeholder="Selecciona las tags" isMulti value={tags.name} onChange={(input) => handleTags(input)} /></div>
+              <div className="formInput"><Creatable options={tags} placeholder="Selecciona las tags" isMulti onChange={(input) => handleTags(input)} /></div>
               { inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.name}</label>

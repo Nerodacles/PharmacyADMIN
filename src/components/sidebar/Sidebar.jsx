@@ -51,10 +51,12 @@ const Sidebar = () => {
               <span>Órdenes</span>
               </li>
             </Link>
-            <li>
-              <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-            </li>
+            <Link to="/deliveries" style={{textDecoration: "none"}}>
+              <li>
+                <LocalShippingIcon className="icon" />
+              <span>Delivery</span>
+              </li>
+            </Link>
             <li>
               <InputOutlinedIcon className="icon" />
             <span onClick={() => logout()}>Cerrar Sesion</span>

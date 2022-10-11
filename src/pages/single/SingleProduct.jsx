@@ -6,7 +6,6 @@ import List from "../../components/table/Table";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../store/axios";
 
-
 const Single = () => {
   const url = window.location.pathname;
   const id = url.split("/")[2];

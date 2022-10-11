@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import UserList from "./pages/lists/users";
 import ProductsList from "./pages/lists/products";
 import OrdersList from "./pages/lists/orders";
+import RouteList from "./pages/lists/route";
 
 // Single
 import SingleUser from "./pages/single/SingleUser";
@@ -55,6 +56,9 @@ function App() {
             <Route path="orders">
               <Route index element={<ProtectedRoute><OrdersList/></ProtectedRoute>}/>
               <Route path=":orderId" element={<ProtectedRoute><SingleOrder/></ProtectedRoute>}/>
+            </Route>
+            <Route path="deliveries">
+              <Route index element={<ProtectedRoute><RouteList/></ProtectedRoute>}/>
             </Route>
           </Route>
         </Routes>

@@ -67,14 +67,14 @@ const New = ({inputs, title}) => {
           <div className="right">
             <form onSubmit={handleSubmit}>
               <div className="formInput">
-                  <label htmlFor="file">Image : <DriveFolderUploadOutlined className="icon"/> </label>
+                  <label htmlFor="file">Imagen : <DriveFolderUploadOutlined className="icon"/> </label>
                   <input type="file" name="cover" id="file" onChange={(input) => handleChange(input)} style={{ display: "none"}} required />
               </div>
               <div className="formInput"><Creatable options={tags} placeholder="Selecciona las tags" isMulti value={tags.name} onChange={(input) => handleTags(input)} required /></div>
               { inputs.map((input) => (
                 <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input name={input.label} type={input.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(input) => handleChange(input)} required />
+                  <label>{input.name}</label>
+                  <input name={input.name} type={input.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(input) => handleChange(input)} required />
                 </div>
               ))}
               

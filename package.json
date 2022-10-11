@@ -2,6 +2,7 @@
   "name": "pharmacyadmin",
   "version": "0.1.0",
   "private": false,
+  "homepage": "",
   "author": "Juanma Canahuate",
   "license": "MIT",
   "dependencies": {
@@ -14,6 +15,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^0.27.2",
+    "pigeon-maps": "^0.21.3",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
@@ -24,6 +26,7 @@
     "recharts": "^2.1.14",
     "sass": "^1.55.0",
     "serve": "^14.0.1",
+    "styled-components": "^5.3.6",
     "web-vitals": "^3.0.3"
   },
   "scripts": {
