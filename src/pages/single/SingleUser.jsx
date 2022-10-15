@@ -12,6 +12,15 @@ const Single = () => {
   const [user, setUser] = useState(null);
   const [orders, setOrders] = useState(null);
 
+  function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+    }
+    return null;
+  }
+
   useEffect(() => {
     const getUser = async () => {
       await axiosInstance.get(`users/${id}`).then((res) => { setUser(res.data); });
@@ -27,7 +36,6 @@ const Single = () => {
         <Navbar/>
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
             <h1 className="title">Información</h1>
             <div className="item">
               <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=536&q=80" alt="" className="itemImg"/>
@@ -35,7 +43,7 @@ const Single = () => {
                 <h1 className="itemTitle">{user?.username}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Número Telefonico:</span>
-                  <span className="itemKey">+1 000-000-000</span>
+                  <span className="itemKey">{user?.phone ? `+1 ${formatPhoneNumber(user?.phone)}` : '+1 000-000-000'}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>

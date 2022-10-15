@@ -25,7 +25,6 @@ const Datatable = () => {
     {field: "username", headerName: "Nombre", width: 200},
     {field: "email", headerName: "Email", width: 200},
     {field: "role", headerName: "Rol", width: 70},
-    // {field: "description", headerName: "Descripción", width: 200},
   ];
 
   const actionColumn = [

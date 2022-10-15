@@ -29,10 +29,11 @@ const Datatable = () => {
           <div>{params.value.split("T")[0]}</div>
         )}
     },
-    { field: "delivered", headerName: "Entregado", width: 100, renderCell: (params) => {
-        return (
-          <div>{params.value ? "Si" : "No"}</div>
-        )}
+    { field: "delivered", headerName: "Se entregó", width: 120, renderCell: (params) => {
+        if (params.value === 'no'){ return <div>{params.value}</div> }
+        if (params.value === 'on the way'){ return <div>está de camino</div> }
+        if (params.value === 'yes'){ return <div>si</div> }
+      }
     },
     { field: "drugs", headerName: "Medicamentos", width: 200, renderCell: (params) => {
       return ( 
