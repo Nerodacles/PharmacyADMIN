@@ -20,10 +20,6 @@ const Datatable = () => {
 
   if (!products) return null;
 
-  // const handleDelete = (id) => {
-  //   setProducts(products.filter((item) => item.id !== id));
-  // };
-
   const handleModify = (id) => {
     window.location.href = `/products/modify/${id}`;
   };
@@ -68,6 +64,7 @@ const Datatable = () => {
       },
     },
   ];
+  
   return (
     <>
       <div className="datatable">

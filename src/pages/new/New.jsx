@@ -15,6 +15,8 @@ const New = ({inputs, title}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(newProduct)
+
     const data = new FormData();
     data.append('cover', newProduct.cover);
     data.append('name', newProduct.name);
@@ -74,7 +76,7 @@ const New = ({inputs, title}) => {
               { inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.name}</label>
-                  <input name={input.name} type={input.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(input) => handleChange(input)} required />
+                  <input name={input.label} type={input.type} placeholder={input.placeholder} defaultValue={input.value} onChange={(input) => handleChange(input)} required />
                 </div>
               ))}
               

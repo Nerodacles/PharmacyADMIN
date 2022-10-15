@@ -87,7 +87,7 @@ function MyMap({orders}) {
             <div className="clients">
                 <div className="clientsContainer">
                     <div className="title">
-                        <h1>Clientes</h1>
+                        <h1>Pedidos</h1>
                     </div>
                     <div className="list">
                         {orders.map((order) => (

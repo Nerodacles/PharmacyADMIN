@@ -56,20 +56,6 @@ const Datatable = () => {
           </div>
         )
       }},
-    // {
-    //   field: "action",
-    //   headerName: "Acciónes",
-    //   width: 100,
-    //   renderCell: (params) => {
-    //     return (
-    //       <div className="cellAction">
-    //         <Link to="/users/test" style={{ textDecoration: "none" }}>
-    //           <div className="viewButton">Ver</div>
-    //         </Link>
-    //       </div>
-    //     );
-    //   },
-    // },
   ];
   return (
     <div className="datatable">
