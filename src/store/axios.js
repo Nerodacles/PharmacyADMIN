@@ -1,8 +1,8 @@
 import axios from "axios";
 
 let axiosInstance = axios.create({
-    // baseURL: "https://pharmacy.jmcv.codes/",
-    baseURL: "http://localhost:8087/",
+    baseURL: "https://pharmacy.jmcv.codes/",
+//     baseURL: "http://localhost:8087/",
 });
 
 axiosInstance.interceptors.request.use(
