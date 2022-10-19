@@ -5,6 +5,16 @@
     display: flex;
     overflow-y: hidden;
 
+    .title {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: top;
+        align-items: left;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
     .map{
         width: 100%;
         height: 100%;
@@ -18,33 +28,18 @@
         }
     }
 
-    .ubicationController {
-        margin-top: 68px;
-        margin-left: 10px;
-        background-color: white;
-        border: 1px solid white;
-        width: 26px;
-        height: 26.5px;
-        position: absolute;
+    .iconMap {
+        flex-direction: row;
+        display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 10%;
-        display: flex;
-        flex-direction: column;
+        z-index: 100 !important;
         cursor: pointer;
-        box-shadow: 0 0 3px rgba(0,0,0,0.2);
-        z-index: 1000;
-
-        .buttonUbication{
-            width: 60%;
-            height: 60%;
-            color: grey;
-        }
     }
 
     .clients {
         width: 30%;
-        height: 80%;
+        height: 100%;
         flex-direction: column;
         display: flex;
         justify-content: center;
@@ -52,39 +47,32 @@
         flex-wrap: wrap;
         overflow: auto;
         padding: 10px;
+        
 
         .clientsContainer {
             width: 100%;
             height: 100%;
-            display: flex;
+            display: column;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-
-            .title {
-                width: 100%;
-                height: 10%;
-                display: flex;
-                justify-content: top;
-                align-items: left;
-                font-size: 20px;
-                font-weight: bold;
-            }
         }
 
         .list {
             width: 100%;
             height: 90%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-wrap: wrap;
-            overflow: hidden;
+            flex-direction: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-gap: 10px;
+            justify-content: center;
+            align-items: top;
+            overflow: auto;
 
             .client {
-                width: 80%;
-                height: 20%;
+                width: 60%;
+                height: 15%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -94,7 +82,7 @@
                 margin: 5px;
                 padding: 5px;
                 border-radius: 5px;
-                // do not select text
+
                 -webkit-touch-callout: none; /* iOS Safari */
                 -webkit-user-select: none; /* Safari */
                 -khtml-user-select: none; /* Konqueror HTML */
@@ -123,11 +111,8 @@
 
                     .clientUbication {
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        overflow: hidden;
                         flex-wrap: wrap;
-                        overflow: auto;
+                        overflow: hidden;
                     }
                 }
             }

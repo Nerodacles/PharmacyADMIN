@@ -21,9 +21,9 @@ const Datatable = () => {
   if (!users) return null;
 
   const columns = [
-    {field: "id", headerName: "ID", width: 150},
+    {field: "id", headerName: "ID", width: 250},
     {field: "username", headerName: "Nombre", width: 200},
-    {field: "email", headerName: "Email", width: 200},
+    {field: "email", headerName: "Email", width: 300},
     {field: "role", headerName: "Rol", width: 70},
   ];
 
@@ -41,7 +41,7 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Acciónes",
-      width: 200,
+      width: 80,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -60,6 +60,8 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="datagrid"
+        getRowHeight={() => 'auto'}
+        getRowSpacing={() => 'auto'}
         rows={users}
         key={users.id}
         columns={columns.concat(actionColumn)}

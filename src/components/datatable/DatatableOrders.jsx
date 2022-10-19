@@ -21,10 +21,10 @@ const Datatable = () => {
   if (!orders) return null;
 
   const columns = [
-    { field: "id", headerName: "ID", width: 150 },
+    { field: "id", headerName: "ID", width: 250 },
     { field: "totalPrice", headerName: "Precio Total", width: 100 },
     { field: "user", headerName: "Usuario", width: 70 },
-    { field: "createdTime", headerName: "Fecha", width: 100, renderCell: (params) => {
+    { field: "createdTime", headerName: "Fecha", width: 101, renderCell: (params) => {
         return (
           <div>{params.value.split("T")[0]}</div>
         )}
@@ -38,7 +38,7 @@ const Datatable = () => {
     { field: "drugs", headerName: "Medicamentos", width: 200, renderCell: (params) => {
       return ( 
         <div className="drugs"> {params.value.map((drug) => ( 
-          <div key={drug.id}> <p>{drug.name}</p></div> 
+            <div key={drug.id}> {drug.name} </div> 
           ))}
         </div>
       )},
@@ -52,7 +52,6 @@ const Datatable = () => {
             <Switch
               onChange={() => handleSwitch(params.row.id, params.row.status)}
               checked={params.value}
-              
             />
           </div>
         )
@@ -67,6 +66,8 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={orders}
+        getRowHeight={() => 'auto'}
+        getRowSpacing={() => 'auto'}
         columns={columns.concat(actionColumn)}
         key={orders.id}
         pageSize={10}

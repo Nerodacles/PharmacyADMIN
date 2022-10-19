@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import "./featured.scss"
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -8,22 +9,25 @@ const Featured = ({data}) => {
   let target = 2000;
   
   let earningsToday = data.filter((order) => {
-    return new Date(order.createdTime).toLocaleDateString() === today;
-  }).reduce((acc, curr) => {
-    return acc + curr.totalPrice;
-  }, 0);
+    if (order.delivered === "yes") { 
+      return new Date(order.createdTime).toLocaleDateString() === today 
+    }
+  })
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
 
   let earningsLastWeek = data.filter((order) => {
-    return new Date(order.createdTime).getMonth() === new Date().getMonth() && new Date(order.createdTime).getDate() > new Date().getDate() - 7;
-  }).reduce((acc, curr) => {
-    return acc + curr.totalPrice;
-  }, 0);
+    if (order.delivered === "yes") {
+      return new Date(order.createdTime).getMonth() === new Date().getMonth() && new Date(order.createdTime).getDate() > new Date().getDate() - 7
+    }
+  })
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
 
   let earningsLastMonth = data.filter((order) => {
-    return new Date(order.createdTime).getMonth() === new Date().getMonth();
-  }).reduce((acc, curr) => {
-    return acc + curr.totalPrice;
-  }, 0);
+    if (order.delivered === "yes") {
+      return new Date(order.createdTime).getMonth() === new Date().getMonth() - 1
+    }
+  })
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
 
   let percentage = Math.round((earningsToday / target) * 100);
 

@@ -20,6 +20,23 @@ const List = ({orders: items}) => {
     }
   }
 
+  const EstadoDelivery = (data) => {
+    console.log()
+    if (data.data === 'yes'){
+      return (
+        <span className={`status Approved`}>Entregado</span>
+      )
+    }
+    if (data.data === 'on the way'){
+      return (
+        <span className={`status Pending`}>De camino</span>
+      )
+    }
+    return (
+      <span className={`status Waiting`}>En espera</span>
+    )
+  };
+
   let sortedOrders = items.sort((a, b) => {
     return Date.parse(b.createdTime) - Date.parse(a.createdTime);
   });
@@ -69,10 +86,8 @@ const List = ({orders: items}) => {
               <IsOrderUser body user={row}/>
               <TableCell className="tableCell" align="left">{row.createdTime.split("T")[0]}</TableCell>
               <TableCell className="tableCell" align="left">RD$ {Number(row.totalPrice).toLocaleString("en-US")}</TableCell>
-              <TableCell className="tableCell">PayPal</TableCell>
-              <TableCell className="tableCell">
-                <span className={`status ${row.status ? 'Approved' : 'Pending'}`}>{row.status ? 'Aprovado' : 'Pendiente'}</span>
-              </TableCell>
+              <TableCell className="tableCell">{row.payment.paymentMethod}</TableCell>
+              <TableCell className="tableCell"> <EstadoDelivery data={row.delivered} /> </TableCell>
             </TableRow>
           ))}
         </TableBody>

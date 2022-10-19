@@ -19,8 +19,10 @@ const Home = () => {
   }, []);
 
   if (!users || !orders) return null;
+
   let totalEarnings = orders.reduce((acc, curr) => {
-    return acc + curr.totalPrice;
+    if (curr.delivered === "yes") { return acc + curr.totalPrice } 
+    else { return acc }
   }, 0);
 
   let diffUsersPastMonth = users.filter((user) => {

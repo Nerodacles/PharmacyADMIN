@@ -25,7 +25,7 @@ const Datatable = () => {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 150 },
+    { field: "id", headerName: "ID", width: 250 },
     {field: "name", headerName: "Fármaco", width: 200},
     {field: "price", headerName: "Precio", width: 90},
     {field: "stock", headerName: "Cantidad", width: 90},
@@ -74,6 +74,8 @@ const Datatable = () => {
         </div>
         <DataGrid
           className="datagrid"
+          getRowHeight={() => 'auto'}
+          getRowSpacing={() => 'auto'}
           rows={products}
           key={products.id}
           columns={columns.concat(actionColumn)}

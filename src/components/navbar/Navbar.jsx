@@ -1,11 +1,13 @@
 import "./navbar.scss"
 import {NotificationsNoneOutlined, DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import ChatBubbleOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { DarkModeContext, DarkModeState } from "../../context/darkModeContext";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const [counterNotifications, setCounterNotifications] = useState(null);
+  const [counterMessages, setCounterMessages] = useState(null);
 
   const handleDarkMode = () => {
     dispatch({type:"TOGGLE"})
@@ -25,11 +27,11 @@ const Navbar = () => {
           </div>
           <div className="item">
             <NotificationsNoneOutlined className="icon" />
-            <div className="counter">1</div>
+            {counterNotifications && <span className="counter">{counterNotifications}</span>}
           </div>
           <div className="item">
             <ChatBubbleOutlinedIcon className="icon" />
-            <div className="counter">1</div>
+            {counterMessages && <span className="counter">{counterMessages}</span>}
           </div>
         </div>
       </div>

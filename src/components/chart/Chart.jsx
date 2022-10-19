@@ -3,7 +3,10 @@ import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } f
 
 const Chart = ({aspect , title, data}) => {
   const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ];
+
   let chartData = [
+    { month: monthNames[10], price: 0 }, 
+    { month: monthNames[11], price: 0 }, 
     { month: monthNames[0], price: 0 }, 
     { month: monthNames[1], price: 0 },
     { month: monthNames[2], price: 0 },
@@ -14,17 +17,18 @@ const Chart = ({aspect , title, data}) => {
     { month: monthNames[7], price: 0 },
     { month: monthNames[8], price: 0 },
     { month: monthNames[9], price: 0 },
-    { month: monthNames[10], price: 0 },
-    { month: monthNames[11], price: 0 },
   ];
+  
   data?.forEach((item) => {
-    let month = monthNames[new Date(item.createdTime).getMonth()];
-    let price = item.totalPrice;
-    let index = chartData.findIndex((item) => item.month === month);
-    if (index < 0) {
-      chartData.push({ month, price });
-    } else {
-      chartData[index].price += price;
+    if (item.delivered === "yes") {
+      let month = monthNames[new Date(item.createdTime).getMonth()];
+      let price = item.totalPrice;
+      let index = chartData.findIndex((item) => item.month === month);
+      if (index < 0) {
+        chartData.push({ month, price });
+      } else {
+        chartData[index].price += price;
+      }
     }
   });
 
