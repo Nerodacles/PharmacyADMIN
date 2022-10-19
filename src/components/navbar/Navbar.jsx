@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./navbar.scss"
 import {NotificationsNoneOutlined, DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
 import ChatBubbleOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
