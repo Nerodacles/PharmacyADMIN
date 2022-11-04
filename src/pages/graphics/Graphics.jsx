@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 import "./graphics.scss"
 import Navbar from "../../components/navbar/Navbar"
