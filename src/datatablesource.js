@@ -10,7 +10,7 @@ export const userColumns = [
           <img className="cellImg" src={params.row.img} alt="avatar" />
           {params.row.username}
         </div>
-      );
+      )
     },
   },
   {
@@ -32,7 +32,7 @@ export const userColumns = [
         <div className={`cellWithStatus ${params.row.status}`}>
           {params.row.status}
         </div>
-      );
+      )
     },
   },
-];
+]

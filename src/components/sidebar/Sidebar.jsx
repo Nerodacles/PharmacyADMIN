@@ -1,18 +1,12 @@
 import "./sidebar.scss"
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import StoreIcon from '@mui/icons-material/Store';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import InputOutlinedIcon from '@mui/icons-material/InputOutlined';
-import { Link } from "react-router-dom";
+import { AutoGraph, InputOutlined, LocalShipping, CreditCard, Store, PersonOutlineOutlined, Dashboard } from "@mui/icons-material"
+import { Link } from "react-router-dom"
 
 const Sidebar = () => {
   const logout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-
-    window.location.reload();
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    window.location.reload()
   }
 
   return (
@@ -28,37 +22,43 @@ const Sidebar = () => {
           <p className="title">Principal</p>
             <Link to="/" style={{textDecoration: "none"}}>
               <li>
-              <DashboardIcon className="icon" />
+              <Dashboard className="icon" />
               <span>Dashboard</span>
               </li>
             </Link>
             <Link to="/users" style={{textDecoration: "none"}}>
               <p className="title">Listas</p>
               <li>
-                <PersonOutlineOutlinedIcon className="icon" />
+                <PersonOutlineOutlined className="icon" />
               <span>Usuarios</span>
               </li>
             </Link>
             <Link to="/products" style={{textDecoration: "none"}}>
               <li>
-                <StoreIcon className="icon" />
+                <Store className="icon" />
               <span>Productos</span>
               </li>
             </Link>
             <Link to="/orders" style={{textDecoration: "none"}}>
               <li>
-                <CreditCardIcon className="icon" />
+                <CreditCard className="icon" />
               <span>Órdenes</span>
               </li>
             </Link>
             <Link to="/deliveries" style={{textDecoration: "none"}}>
               <li>
-                <LocalShippingIcon className="icon" />
+                <LocalShipping className="icon" />
               <span>Mapa</span>
               </li>
             </Link>
+            <Link to="/graphics" style={{textDecoration: "none"}}>
+              <li>
+                <AutoGraph className="icon" />
+              <span>Gráficos</span>
+              </li>
+            </Link>
             <li>
-              <InputOutlinedIcon className="icon" />
+              <InputOutlined className="icon" />
             <span onClick={() => logout()}>Cerrar Sesion</span>
             </li>
         </ul>

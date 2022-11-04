@@ -1,24 +1,24 @@
-import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
-// import { Link } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import Switch from "react-switch";
-import axiosInstance from "../../store/axios";
+import "./datatable.scss"
+import { DataGrid } from "@mui/x-data-grid"
+// import { Link } from "react-router-dom"
+import { useEffect, useState, useCallback } from "react"
+import Switch from "react-switch"
+import axiosInstance from "../../store/axios"
 
 const Datatable = () => {
-  const [orders, setOrders] = useState(null);
+  const [orders, setOrders] = useState(null)
 
   const handleSwitch = useCallback( (id, chequed) => {
       axiosInstance.patch(`/orders/status/${id}`, { status: !chequed }).then((response) => {
-        setOrders(orders.map((order) => order.id === id ? { ...order, status: !chequed } : order));
-      });
-  },[orders] );
+        setOrders(orders.map((order) => order.id === id ? { ...order, status: !chequed } : order))
+      })
+  },[orders] )
 
   useEffect(() => {
-    axiosInstance.get("orders").then((res) => { setOrders(res.data); });
-  }, []);
+    axiosInstance.get("orders").then((res) => { setOrders(res.data) })
+  }, [])
 
-  if (!orders) return null;
+  if (!orders) return null
 
   const columns = [
     { field: "id", headerName: "ID", width: 250 },
@@ -43,7 +43,7 @@ const Datatable = () => {
         </div>
       )},
     },
-  ];
+  ]
 
   const actionColumn = [
     { field: "status", headerName: "Estado", width: 80, renderCell: (params) => {
@@ -56,7 +56,7 @@ const Datatable = () => {
           </div>
         )
       }},
-  ];
+  ]
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -75,7 +75,7 @@ const Datatable = () => {
         disableColumnFilter={false}
       />
     </div>
-  );
-};
+  )
+}
 
-export default Datatable;
+export default Datatable

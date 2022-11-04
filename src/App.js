@@ -1,40 +1,41 @@
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
+import Home from "./pages/home/Home"
+import Login from "./pages/login/Login"
+import Graphics from "./pages/graphics/Graphics"
 
-import UserList from "./pages/lists/users";
-import ProductsList from "./pages/lists/products";
-import OrdersList from "./pages/lists/orders";
-import RouteList from "./pages/lists/route";
+import UserList from "./pages/lists/users"
+import ProductsList from "./pages/lists/products"
+import OrdersList from "./pages/lists/orders"
+import RouteList from "./pages/lists/route"
 
 // Single
-import SingleUser from "./pages/single/SingleUser";
-import SingleProduct from "./pages/single/SingleProduct";
-import SingleOrder from "./pages/single/SingleOrder";
+import SingleUser from "./pages/single/SingleUser"
+import SingleProduct from "./pages/single/SingleProduct"
+import SingleOrder from "./pages/single/SingleOrder"
 
 // Pages
-import New from "./pages/new/New";
-import Modify from "./pages/modify/Modify";
+import New from "./pages/new/New"
+import Modify from "./pages/modify/Modify"
 
 // Sources
-import { productInputs } from "./formSource";
+import { productInputs } from "./formSource"
 
-import "./style/dark.scss";
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
+import "./style/dark.scss"
+import { useContext } from "react"
+import { DarkModeContext } from "./context/darkModeContext"
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 function App() {
   const {darkMode} = useContext(DarkModeContext)
   const ProtectedRoute = ({ children }) => {
-    let user = localStorage.getItem("user");
+    let user = localStorage.getItem("user")
   
     if (!user) {
-      return <Navigate to="/login" replace />;
+      return <Navigate to="/login" replace />
     }
   
-    return children;
-  };
+    return children
+  }
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -60,11 +61,14 @@ function App() {
             <Route path="deliveries">
               <Route index element={<ProtectedRoute><RouteList/></ProtectedRoute>}/>
             </Route>
+            <Route path="graphics">
+              <Route index element={<ProtectedRoute><Graphics/></ProtectedRoute>}/>
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

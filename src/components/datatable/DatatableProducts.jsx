@@ -1,28 +1,28 @@
-import "./datatable.scss";
-import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
-import axiosInstance from "../../store/axios";
-import Switch from "react-switch";
+import "./datatable.scss"
+import { DataGrid } from "@mui/x-data-grid"
+import { Link } from "react-router-dom"
+import { useEffect, useState, useCallback } from "react"
+import axiosInstance from "../../store/axios"
+import Switch from "react-switch"
 
 const Datatable = () => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState(null)
 
   const handleSwitch = useCallback( (id, chequed) => {
     axiosInstance.patch(`api/update/${id}`, { status: !chequed }).then((response) => {
-      setProducts(products.map((order) => order.id === id ? { ...order, status: !chequed } : order));
-    });
-  }, [products]);
+      setProducts(products.map((order) => order.id === id ? { ...order, status: !chequed } : order))
+    })
+  }, [products])
 
   useEffect(() => {
-    axiosInstance.get("api/getAll").then((res) => { setProducts(res.data); });
-  }, []);
+    axiosInstance.get("api/getAll").then((res) => { setProducts(res.data) })
+  }, [])
 
-  if (!products) return null;
+  if (!products) return null
 
   const handleModify = (id) => {
-    window.location.href = `/products/modify/${id}`;
-  };
+    window.location.href = `/products/modify/${id}`
+  }
 
   const columns = [
     { field: "id", headerName: "ID", width: 250 },
@@ -37,7 +37,7 @@ const Datatable = () => {
         </div>
       )
     }},
-  ];
+  ]
 
   const actionColumn = [
     { field: "status", headerName: "Estado", width: 80, renderCell: (params) => {
@@ -60,10 +60,10 @@ const Datatable = () => {
             <Link to={`${params.id}`} style={{ textDecoration: "none" }}><div className="viewButton"> Ver </div></Link>
             <button className="editButton" onClick={() => handleModify(params.id)}> Modificar </button>
           </div>
-        );
+        )
       },
     },
-  ];
+  ]
   
   return (
     <>
@@ -84,7 +84,7 @@ const Datatable = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Datatable;
+export default Datatable

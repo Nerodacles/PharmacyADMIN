@@ -27,4 +27,4 @@ export const productInputs = [
     type: "number",
     placeholder: "100",
   },
-];
+]

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "./map.scss"
 import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps"
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import { Home, DeliveryDiningOutlined } from "@mui/icons-material"
 import axiosInstance from "../../store/axios"
 
@@ -12,7 +12,7 @@ function MyMap({orders}) {
     const defaultProps = {
         center: [18.947729907033047, -70.4059648798399],
         zoom: 16,
-    };
+    }
 
     const ordersFilter = orders.filter(order => order.delivered === "on the way")
 
@@ -25,7 +25,6 @@ function MyMap({orders}) {
     }
 
     const getDriversLocation = async () => {
-        console.log('test')
         axiosInstance.get("users/All").then((res) => {
             const drivers = res.data.filter((user) => user.role === "delivery")
             const driversLocation = drivers.map((driver) => driver.location)
@@ -37,8 +36,8 @@ function MyMap({orders}) {
     useEffect(() => {
         getDriversLocation()
         const interval = setInterval(() => { getDriversLocation() }, 5000)
-        return () => clearInterval(interval);
-    }, []);
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <div className="cualquiera">

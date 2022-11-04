@@ -6,19 +6,19 @@ import axiosInstance from "../../store/axios"
 import { useState, useEffect } from "react"
 
 const List = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await axiosInstance.get("/orders");
-        setOrders(res.data);
+        const res = await axiosInstance.get("/orders")
+        setOrders(res.data)
       } catch (err) {
-        console.log(err);
+        throw err
       }
-    };
-    getOrders();
-  }, []);
+    }
+    getOrders()
+  }, [])
 
   return (
     <div className="list">

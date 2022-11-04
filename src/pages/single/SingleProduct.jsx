@@ -1,27 +1,27 @@
-import "./single.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart" ;
-import List from "../../components/table/Table";
-import { useState, useEffect } from "react";
-import axiosInstance from "../../store/axios";
+import "./single.scss"
+import Sidebar from "../../components/sidebar/Sidebar"
+import Navbar from "../../components/navbar/Navbar"
+import Chart from "../../components/chart/Chart" 
+import List from "../../components/table/Table"
+import { useState, useEffect } from "react"
+import axiosInstance from "../../store/axios"
 
 const Single = () => {
-  const url = window.location.pathname;
-  const id = url.split("/")[2];
-  const [products, setProducts] = useState(null);
-  const [orders, setOrders] = useState(null);
+  const url = window.location.pathname
+  const id = url.split("/")[2]
+  const [products, setProducts] = useState(null)
+  const [orders, setOrders] = useState(null)
 
   useEffect(() => {
     const getUser = async () => {
-      await axiosInstance.get(`api/getOne/${id}`).then((res) => { setProducts(res.data.data); });
-      await axiosInstance.get(`orders/product/${id}`).then((res) => { setOrders(res.data); });
-    };
-    getUser();
-  }, [id]);
+      await axiosInstance.get(`api/getOne/${id}`).then((res) => { setProducts(res.data.data) })
+      await axiosInstance.get(`orders/product/${id}`).then((res) => { setOrders(res.data) })
+    }
+    getUser()
+  }, [id])
 
   const handleModify = () => {
-    window.location.href = `/products/modify/${id}`;
+    window.location.href = `/products/modify/${id}`
   }
 
   return (
@@ -57,7 +57,7 @@ const Single = () => {
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3/1} title="Ventas ( Últimos 12 meses )" data={orders}/>
+            <Chart aspect={3/1} title="Ventas ( Últimos 12 meses )" data={orders} tip/>
           </div>
         </div>
         <div className="bottom">

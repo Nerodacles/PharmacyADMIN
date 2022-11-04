@@ -1,33 +1,33 @@
-import "./single.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import Chart from "../../components/chart/Chart" ;
-import List from "../../components/table/Table";
-import { useState, useEffect } from "react";
-import axiosInstance from "../../store/axios";
+import "./single.scss"
+import Sidebar from "../../components/sidebar/Sidebar"
+import Navbar from "../../components/navbar/Navbar"
+import Chart from "../../components/chart/Chart" 
+import List from "../../components/table/Table"
+import { useState, useEffect } from "react"
+import axiosInstance from "../../store/axios"
 
 const Single = () => {
-  const url = window.location.pathname;
-  const id = url.split("/")[2];
-  const [user, setUser] = useState(null);
-  const [orders, setOrders] = useState(null);
+  const url = window.location.pathname
+  const id = url.split("/")[2]
+  const [user, setUser] = useState(null)
+  const [orders, setOrders] = useState(null)
 
   function formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
     if (match) {
-      return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3]
     }
-    return null;
+    return null
   }
 
   useEffect(() => {
     const getUser = async () => {
-      await axiosInstance.get(`users/${id}`).then((res) => { setUser(res.data); });
-      await axiosInstance.get(`orders/user/${id}`).then((res) => { setOrders(res.data); });
-    };
-    getUser();
-  }, [id]);
+      await axiosInstance.get(`users/${id}`).then((res) => { setUser(res.data) })
+      await axiosInstance.get(`orders/user/${id}`).then((res) => { setOrders(res.data) })
+    }
+    getUser()
+  }, [id])
 
   return (
     <div className="single">
@@ -57,7 +57,7 @@ const Single = () => {
             </div>
           </div>
           <div className="right">
-            <Chart aspect={4/1} title="Gastos del usuario ( Últimos 12 meses )" data={orders}/>
+            <Chart aspect={4/1} title="Gastos del usuario ( Últimos 12 meses )" data={orders} tip/>
           </div>
         </div>
         <div className="bottom">

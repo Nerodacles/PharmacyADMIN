@@ -1,35 +1,35 @@
 /* eslint-disable array-callback-return */
 import "./featured.scss"
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import { KeyboardArrowUpOutlined, KeyboardArrowDown } from "@mui/icons-material";
+import { CircularProgressbar } from "react-circular-progressbar"
+import "react-circular-progressbar/dist/styles.css"
+import { KeyboardArrowUpOutlined, KeyboardArrowDown } from "@mui/icons-material"
 
 const Featured = ({data}) => {
-  let today = new Date().toLocaleDateString();
-  let target = 2000;
+  let today = new Date().toLocaleDateString()
+  let target = 2000
   
   let earningsToday = data.filter((order) => {
     if (order.delivered === "yes") { 
       return new Date(order.createdTime).toLocaleDateString() === today 
     }
   })
-  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0)
 
   let earningsLastWeek = data.filter((order) => {
     if (order.delivered === "yes") {
       return new Date(order.createdTime).getMonth() === new Date().getMonth() && new Date(order.createdTime).getDate() > new Date().getDate() - 7
     }
   })
-  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0)
 
   let earningsLastMonth = data.filter((order) => {
     if (order.delivered === "yes") {
       return new Date(order.createdTime).getMonth() === new Date().getMonth() - 1
     }
   })
-  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0);
+  .reduce((acc, curr) => { return acc + curr.totalPrice }, 0)
 
-  let percentage = Math.round((earningsToday / target) * 100);
+  let percentage = Math.round((earningsToday / target) * 100)
 
   const ResultItem = (data) => {
     if (data.data > target) { 
@@ -53,7 +53,7 @@ const Featured = ({data}) => {
         <div className="resultAmount">RD$ {Number(data.data).toLocaleString("en-US")}</div>
       </div>
     )
-  };
+  }
 
   return (
     <div className='featured'>

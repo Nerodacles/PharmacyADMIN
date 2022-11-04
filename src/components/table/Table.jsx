@@ -1,14 +1,14 @@
 import "./table.scss"
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 
 const List = ({orders: items}) => {
-  if (!items) return null;
+  if (!items) return null
 
   function IsOrderUser(props){
     if (items[0].user) {
@@ -20,8 +20,17 @@ const List = ({orders: items}) => {
     }
   }
 
+  function IsDelivered(props){
+    if (items[0].delivered) {
+      if (props.head) return <TableCell className="tableCell">Entregado</TableCell>
+      if (props.body) {
+        if (props.data.deliveredDate) return <TableCell className="tableCell">{props.data?.deliveredDate.split("T")[0]}</TableCell>
+        return ''
+      }
+    }
+  }
+
   const EstadoDelivery = (data) => {
-    console.log()
     if (data.data === 'yes'){
       return (
         <span className={`status Approved`}>Entregado</span>
@@ -33,13 +42,13 @@ const List = ({orders: items}) => {
       )
     }
     return (
-      <span className={`status Waiting`}>En espera</span>
+      <span className={`status Waiting`}>Pendiente</span>
     )
-  };
+  }
 
   let sortedOrders = items.sort((a, b) => {
-    return Date.parse(b.createdTime) - Date.parse(a.createdTime);
-  });
+    return Date.parse(b.createdTime) - Date.parse(a.createdTime)
+  })
 
   if (items.length === 0) return (
   <TableContainer component={Paper} className="table">
@@ -64,11 +73,12 @@ const List = ({orders: items}) => {
           <TableRow>
             <TableCell className="tableCell">ID</TableCell>
             <TableCell className="tableCell">Fármaco</TableCell>
-            <IsOrderUser head/>
-            <TableCell className="tableCell">Fecha</TableCell>
+            <IsOrderUser head />
+            <TableCell className="tableCell">Fecha de creación</TableCell>
             <TableCell className="tableCell">Precio</TableCell>
             <TableCell className="tableCell">Forma de Pago</TableCell>
             <TableCell className="tableCell">Estado</TableCell>
+            <IsDelivered head />
           </TableRow>
         </TableHead>
         <TableBody>
@@ -88,6 +98,7 @@ const List = ({orders: items}) => {
               <TableCell className="tableCell" align="left">RD$ {Number(row.totalPrice).toLocaleString("en-US")}</TableCell>
               <TableCell className="tableCell">{row.payment.paymentMethod}</TableCell>
               <TableCell className="tableCell"> <EstadoDelivery data={row.delivered} /> </TableCell>
+              <IsDelivered body data={row}/>
             </TableRow>
           ))}
         </TableBody>
