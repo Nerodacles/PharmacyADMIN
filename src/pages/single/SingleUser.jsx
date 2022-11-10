@@ -29,6 +29,12 @@ const Single = () => {
     getUser()
   }, [id])
 
+  if (!user || !orders) return null
+
+  let dataOrders = orders?.sort((a, b) => {
+    return new Date(b.createdTime) - new Date(a.createdTime)
+  })
+
   return (
     <div className="single">
       <Sidebar/>
@@ -51,18 +57,38 @@ const Single = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Dirección:</span>
-                  <span className="itemKey">256 Collect House, Buteko Avenue, Ndola</span>
+                  {
+                    user?.moreDetails ?
+                      <>
+                        <>
+                          <span className="itemKey">{user?.moreDetails.direction}</span>
+                        </>
+                        
+                        <div className="detailItem">
+                          <span className="itemKey">Número de casa:</span>
+                          <span className="itemKey">{user?.moreDetails.houseNumber}</span>
+                        </div>
+
+                        <>
+                          <span className="itemKey">Referencia:</span>
+                          <span className="itemKey">{user?.moreDetails.reference}</span>
+                        </>
+                        
+                      </>
+                    :
+                    <span className="itemKey">256 Collect House, Buteko Avenue, Ndola</span>
+                  }
                 </div>
               </div>
             </div>
           </div>
           <div className="right">
-            <Chart aspect={4/1} title="Gastos del usuario ( Últimos 12 meses )" data={orders} tip/>
+            <Chart aspect={4/1} title="Gastos del usuario ( Últimos 12 meses )" data={dataOrders} tip/>
           </div>
         </div>
         <div className="bottom">
         <h1 className="title">Últimas Transacciónes</h1>
-          <List orders={orders}/>
+          <List orders={dataOrders}/>
         </div>
       </div>
     </div>

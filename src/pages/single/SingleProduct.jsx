@@ -20,9 +20,15 @@ const Single = () => {
     getUser()
   }, [id])
 
+  if (!products || !orders) return null
+
   const handleModify = () => {
     window.location.href = `/products/modify/${id}`
   }
+
+  let dataOrders = orders?.sort((a, b) => {
+    return new Date(b.createdTime) - new Date(a.createdTime)
+  })
 
   return (
     <div className="single">
@@ -57,12 +63,12 @@ const Single = () => {
             </div>
           </div>
           <div className="right">
-            <Chart aspect={3/1} title="Ventas ( Últimos 12 meses )" data={orders} tip/>
+            <Chart aspect={3/1} title="Ventas ( Últimos 12 meses )" data={dataOrders} tip/>
           </div>
         </div>
         <div className="bottom">
         <h1 className="title">Ultimas Transacciones</h1>
-          <List orders={orders}/>
+          <List orders={dataOrders}/>
         </div>
       </div>
     </div>

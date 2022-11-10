@@ -15,8 +15,6 @@ const New = ({inputs, title}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(newProduct)
-
     const data = new FormData();
     data.append('cover', newProduct.cover);
     data.append('name', newProduct.name);

@@ -1,26 +1,27 @@
 import "./chart.scss"
-import { BarChart, Bar, AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
 
 const Chart = ({aspect , title, data, tip = false}) => {
   const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+  const COLORS = ["#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede15b", "#bdcf32", "#87bc45", "#27aeef", "#b33dc6"]
   let monthDrugs = {}
 
   let chartData = monthNames.map((month, index) => {
     if (data){
       if (index === 11) {
-        return { month: monthNames[new Date(data[0].createdTime).getMonth()], price: 0 }
+        return { month: monthNames[new Date(data[0]?.createdTime).getMonth()], price: 0 }
       }
       if (index === 0) {
-        return { month: monthNames[new Date(data[0].createdTime).getMonth() + 1], price: 0 }
+        return { month: monthNames[new Date(data[0]?.createdTime).getMonth() + 1], price: 0 }
       }
-      return { month: monthNames[new Date(data[0].createdTime).getMonth() - (11 - index)], price: 0 }
+      return { month: monthNames[new Date(data[0]?.createdTime).getMonth() - (11 - index)], price: 0 }
     }
     return { month: month, price: 0 }
   })
   
   data?.forEach((item) => {
     if (item.delivered === "yes") {
-      let month = monthNames[new Date(item.createdTime).getMonth()]
+      let month = monthNames[new Date(item?.createdTime).getMonth()]
       let price = item.totalPrice
       let index = chartData.findIndex((item) => item.month === month)
       item.drugs.forEach(drug => {
@@ -90,7 +91,11 @@ const Chart = ({aspect , title, data, tip = false}) => {
         <div className="title">{title}</div>
         <ResponsiveContainer width="100%" aspect={aspect}>
           <BarChart width={730} height={250} data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-            <Bar dataKey="price" fill="#8884d8" />
+            <Bar dataKey="price" fill="#8884d8">
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Bar>
             <XAxis dataKey="month" />
             <Tooltip content={<CustomTooltip/>}/>
           </BarChart>

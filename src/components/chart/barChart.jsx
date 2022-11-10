@@ -3,7 +3,7 @@ import "./chart.scss"
 import { BarChart, Bar, XAxis, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 
 const barChart = ({aspect , title, data}) => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#FF00FF', '#0000FF', '#00FFFF', '#00FF00', '#FFFF00', '#000000', '#808080', '#C0C0C0', '#FFFFFF']
+  const COLORS = ["#ea5545", "#f46a9b", "#ef9b20", "#edbf33", "#ede15b", "#bdcf32", "#87bc45", "#27aeef", "#b33dc6"]
   
   function returnNames(string){
     let names = []
