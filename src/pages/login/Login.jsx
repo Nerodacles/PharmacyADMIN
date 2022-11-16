@@ -20,12 +20,7 @@ let Login = () => {
     })
   }, [user, password])
 
-  useEffect(() => {
-    if (localStorage.getItem('token')) {
-      window.location.href = '/'
-    }
-  }
-  , [])
+  useEffect(() => { if (localStorage.getItem('token')) { window.location.href = '/' } }, [])
 
   return (
     <div className="login-body">

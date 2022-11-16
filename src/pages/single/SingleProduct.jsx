@@ -22,9 +22,7 @@ const Single = () => {
 
   if (!products || !orders) return null
 
-  const handleModify = () => {
-    window.location.href = `/products/modify/${id}`
-  }
+  const handleModify = () => { window.location.href = `/products/modify/${id}` }
 
   let dataOrders = orders?.sort((a, b) => {
     return new Date(b.createdTime) - new Date(a.createdTime)
