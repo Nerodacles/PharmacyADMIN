@@ -83,25 +83,6 @@ const Graphics = () => {
     return tags
   }
 
-  function ordersByTagsCurrentDay(){
-    let tags = []
-    orders.forEach(order => {
-      if (new Date(order.createdTime).getDate() + 1 === new Date().getDate() && new Date(order.createdTime).getMonth() === new Date().getMonth()) {
-        order.drugs.forEach(drug => {
-          drug.tags.forEach(tag => {
-            let tagIndex = tags.findIndex(t => t.tag === tag)
-            if (tagIndex === -1) {
-              tags.push({tag: tag, drug: drug.name, quantity: drug.quantity, count: 1})
-            } else {
-              tags[tagIndex].count++
-            }
-          })
-        })
-      }
-    })
-    return tags
-  }
-
   return (
     <div className="home">
       <Sidebar/>
@@ -112,8 +93,7 @@ const Graphics = () => {
           <Chart aspect={3/1} data={orders} title={'Ventas de Fármacos (12 meses)'}/>
         </div>
         <div className="charts">
-          <BarChart aspect={2/1} data={topUsers}/>
-          <CircleChart aspect={2/1} data={ordersByTagsCurrentDay()} title={'Fármacos vendidos por Síntomas (Por Día)'}/>
+          <BarChart aspect={6/1} data={topUsers} title={'Fármacos comprados por síntomas'}/>
         </div>
         <div className="charts">
           <BarChart aspect={6/1} data={topTags} title={'Fármacos según los síntomas que más se han vendidos'}/>

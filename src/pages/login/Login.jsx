@@ -27,7 +27,7 @@ let Login = () => {
       <div className="screen-1">
         <img className="logo" src="logo.png" alt="Logo" height={300} width={300} />
         <div className="email">
-          <label htmlFor="email">Correo</label>
+          <label htmlFor="email">Usuario</label>
           <div className="sec-2">
             <ion-icon name="mail-outline"></ion-icon>
             <input type="email" name="email" placeholder="Username@gmail.com" onChange={(e) => setUser(e.target.value)}/>

@@ -31,9 +31,9 @@ const barChart = ({aspect , title, data}) => {
       }
       return (
         <div className="custom-tooltip">
-          <p className="label">{`Usuario: ${label}`}</p>
+          <p className="label">{`Síntoma: ${label}`}</p>
           <br />
-          <p className="intro">{`Síntomas de fármacos:`}</p>
+          <p className="intro">{`Fármacos:`}</p>
           { returnNames(payload[0].payload?.drugs)?.map((item, index) => { return <p className="label" key={index}>{item} </p> })}
         </div>
       )
